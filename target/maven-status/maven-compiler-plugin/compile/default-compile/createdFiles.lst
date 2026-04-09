@@ -1,0 +1,15 @@
+com\yourname\advpoints\AdvancementPointsPlugin.class
+com\yourname\advpoints\PlayerJoinQuitListener.class
+com\yourname\advpoints\CustomSword.class
+com\yourname\advpoints\CustomTridentListener.class
+com\yourname\advpoints\CustomAdvancementListener.class
+com\yourname\advpoints\LeaderboardCommand.class
+com\yourname\advpoints\KillStreakListener.class
+com\yourname\advpoints\SwordListener.class
+com\yourname\advpoints\MobKillListener.class
+com\yourname\advpoints\AdminPointsCommand.class
+com\yourname\advpoints\PointsCommand.class
+com\yourname\advpoints\PlayerData.class
+com\yourname\advpoints\AdvancementListener.class
+com\yourname\advpoints\SwordListener$1.class
+com\yourname\advpoints\CraftAdvancementListener.class

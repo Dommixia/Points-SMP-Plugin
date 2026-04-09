@@ -1,0 +1,18 @@
+advancement-rewards:
+  minecraft:end/kill_dragon: 20
+  minecraft:end/dragon_egg: 10
+  minecraft:end/elytra: 15
+  minecraft:story/enter_the_end: 10
+  minecraft:adventure/adventuring_time: 20
+  minecraft:nether/find_bastion: 5
+  minecraft:nether/netherite_armor: 5
+  minecraft:nether/find_fortress: 10
+  minecraft:adventure/trial_chambers: 5
+  minecraft:nether/explore_nether: 5
+
+claimed-advancements: {}
+
+rewards:
+  uuid:
+    100: true
+
