@@ -17,7 +17,6 @@ public class KillStreakListener implements Listener {
     private final HashMap<String, Long> killCooldown = new HashMap<>();
 
     private final HashMap<UUID, Integer> bounties = new HashMap<>();
-
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
@@ -39,6 +38,7 @@ public class KillStreakListener implements Listener {
 
             bounties.remove(victimId);
             victim.removePotionEffect(PotionEffectType.GLOWING);
+            victim.removePotionEffect(PotionEffectType.STRENGTH);
         }
 
         if (killer == null) return;
