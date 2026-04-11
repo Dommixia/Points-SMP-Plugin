@@ -2,9 +2,13 @@ package com.yourname.advpoints;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityUnleashEvent;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
@@ -27,7 +31,10 @@ public class MobKillListener implements Listener {
         Integer points = MOB_POINTS.get(type);
         if (points == null) return;
 
-        // Give points
+        if (type == EntityType.WARDEN){
+            ItemStack reward = new ItemStack(Material.TRIDENT);
+        }
+
         PlayerData.addPoints(player, points);
 
         player.sendMessage("§5[DEBUG] Boss kill detected!");
