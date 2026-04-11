@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -13,6 +15,8 @@ public class KillStreakListener implements Listener {
 
     private final HashMap<UUID, Integer> killStreaks = new HashMap<>();
     private final HashMap<String, Long> killCooldown = new HashMap<>();
+
+    private final HashMap<UUID, Integer> bounties = new HashMap<>();
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
@@ -24,11 +28,23 @@ public class KillStreakListener implements Listener {
         killStreaks.put(victimId, 0);
         victim.sendMessage("💀 Your kill streak has been reset!");
 
+        if (bounties.containsKey(victimId) && killer != null) {
+            int bounty = bounties.get(victimId);
+
+            PlayerData.addPoints(killer, bounty);
+
+            Bukkit.broadcastMessage("§6💰 " + killer.getName() +
+                    " claimed a bounty of §e" + bounty +
+                    "§6 by killing §c" + victim.getName());
+
+            bounties.remove(victimId);
+            victim.removePotionEffect(PotionEffectType.GLOWING);
+        }
+
         if (killer == null) return;
 
         UUID killerId = killer.getUniqueId();
 
-        // 🔥 Anti-farming cooldown
         String key = killerId.toString() + "-" + victimId.toString();
         long now = System.currentTimeMillis();
 
@@ -47,10 +63,46 @@ public class KillStreakListener implements Listener {
         killStreaks.put(killerId, streak);
 
         PlayerData.addPoints(killer, 1);
-        killer.sendMessage("§a +2 points for killing §e" + victim.getName());
+        Bukkit.broadcastMessage("§a +2 points for killing §e" + victim.getName());
 
         if (streak % 3 == 0) {
             PlayerData.addPoints(killer, 5);
             killer.sendMessage("🔥 Kill streak " + streak + "! +5 bonus points");
         }
-    }}
+
+        if (streak == 5) {
+            int bounty = streak * 2;
+            bounties.put(killerId, bounty);
+
+            killer.addPotionEffect(new PotionEffect(
+                    PotionEffectType.GLOWING,
+                    Integer.MAX_VALUE,
+                    0,
+                    false,
+                    false
+            ));
+
+            Bukkit.broadcastMessage("§c⚔ " + killer.getName() +
+                    " is on a streak of §e" + streak +
+                    "§c! Bounty: §6" + bounty + " points");
+        }
+
+        if (streak == 10) {
+            int bounty = streak * 3;
+            bounties.put(killerId, bounty);
+
+            killer.addPotionEffect(new PotionEffect(
+                    PotionEffectType.STRENGTH,
+                    Integer.MAX_VALUE,
+                    2,
+                    false,
+                    false
+            ));
+
+            killer.sendMessage("Recieved Strenght 2 for killing 10 players!!!!");
+
+            Bukkit.broadcastMessage("§4☠ " + killer.getName() +
+                    " is UNSTOPPABLE! §cBounty increased to §6" + bounty);
+        }
+    }
+}

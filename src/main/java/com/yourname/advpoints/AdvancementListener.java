@@ -113,6 +113,9 @@ public class AdvancementListener implements Listener {
         if (adv.equals("minecraft:nether/summon_wither")) return 15;
         if (adv.equals("minecraft:adventure/adventuring_time")) return 10;
         if (adv.equals("minecraft:nether/find_fortress")) return 5;
+        if (adv.equals("minecraft:nether/netherite_armor")) return 10;
+        if (adv.equals("minecraft:nether/explore_nether")) return 5;
+        if (adv.equals("adventure/minecraft_trials_edition")) return 5;
 
         return 0;
     }
