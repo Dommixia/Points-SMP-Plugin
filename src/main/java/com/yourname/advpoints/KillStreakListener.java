@@ -62,7 +62,7 @@ public class KillStreakListener implements Listener {
         int streak = killStreaks.getOrDefault(killerId, 0) + 1;
         killStreaks.put(killerId, streak);
 
-        PlayerData.addPoints(killer, 1);
+        PlayerData.addPoints(killer, 2);
         Bukkit.broadcastMessage("§a +2 points for killing §e" + victim.getName());
 
         if (streak % 3 == 0) {

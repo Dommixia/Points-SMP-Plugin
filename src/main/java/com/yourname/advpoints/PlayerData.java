@@ -63,18 +63,17 @@ public class PlayerData {
 
         System.out.println("Points for " + player.getName() + ": " + pts);
 
-        if (plugin.getConfig().getBoolean("rewards." + id + ".100", false)) {
-            return;
-        }
-        if (pts >= 100) {
+        if (pts >= 100 && !plugin.getConfig().getBoolean("rewards." + id + ".100", false)) {
             giveGoldenApples(player);
 
             plugin.getConfig().set("rewards." + id + ".100", true);
             plugin.saveConfig();
         }
-        if(pts>=150){
+
+        if (pts >= 150 && !plugin.getConfig().getBoolean("rewards." + id + ".150", false)) {
             giveTotems(player);
-            plugin.getConfig().set("rewards." + id + ".100", true);
+
+            plugin.getConfig().set("rewards." + id + ".150", true);
             plugin.saveConfig();
         }
     }

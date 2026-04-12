@@ -41,7 +41,7 @@ public class CraftAdvancementListener implements Listener {
             int points = PlayerData.getPoints(player);
             if(points<100){
                 event.setCancelled(true);
-                player.sendMessage("You need to atleast have 50pts to craft the sword");
+                player.sendMessage("You need to atleast have 100pts to craft the sword");
             }
 
             if (completed.contains(id)) {
