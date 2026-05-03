@@ -57,3 +57,45 @@ A custom ranged/melee weapon with ice-themed effects.
 - Maven (build system)
 
 ## Project structure
+Points-SMP-Plugin/
+│
+├── src/main/          # Plugin source code
+│   └── java/          # Java classes (commands, listeners, plugin logic)
+├── target/            # Compiled build output
+├── pom.xml            # Maven build configuration
+└── README.md
+## Setup and installation
+
+**1. Clone the repo**
+```bash
+git clone https://github.com/Dommixia/Points-SMP-Plugin.git
+cd Points-SMP-Plugin
+```
+
+**2. Build the plugin**
+```bash
+mvn clean package
+```
+
+**3. Install on server**
+- Copy the generated `.jar` from `/target/` into your server's `/plugins/` folder
+- Restart the server
+
+## Key learnings
+
+- How to use the Spigot/Paper event system to listen for in-game actions
+- Building custom item stacks with enchantments and NBT data in Java
+- Implementing persistent data storage for player points across sessions
+- Designing a command system with permission-based access control
+- Working with Maven for Java project builds and dependency management
+
+## Future improvements
+
+- MySQL database support for persistent cross-server leaderboards
+- GUI-based leaderboard using chest inventory menus
+- More custom weapons and point sources
+- Per-world point tracking
+
+## Author
+
+Built as a personal project to learn Java and backend game server development.
